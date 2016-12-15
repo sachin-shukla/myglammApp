@@ -21,8 +21,6 @@ app.controller('BookingsController',['$scope', '$mdDialog','$mdSidenav','$http',
 
     function buildToggler(componentId) {
       return function() {
-      	// console.log(1);
-        // return;
         $mdSidenav(componentId).toggle(); 
       }
     };
@@ -52,7 +50,7 @@ app.controller('BookingsController',['$scope', '$mdDialog','$mdSidenav','$http',
 
                     // geting the data for city and status
                     var arr = $scope.resultData;
-                    $scope.cityArr = ['Mumbai'];
+                    $scope.cityArr = ['Mumbai','Pune'];
                     $scope.StatusArr = ['ARTIST_REJECTED','PENDING','CONSUMER_CANCELLED','UNASSIGNED','COMPLETED','PG_CANCELLED'];
                   
                     // for(var ele in arr){

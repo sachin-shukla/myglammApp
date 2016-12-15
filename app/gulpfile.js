@@ -1,4 +1,5 @@
 
+
 var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	rename = require('gulp-rename')
@@ -33,8 +34,6 @@ gulp.task('html', function(){
 });
 
 
-
-
 // task to run build server 
 gulp.task('browser-sync', function() {
     browserSync({
@@ -44,7 +43,6 @@ gulp.task('browser-sync', function() {
         }
     });
 });
-
 
 
 // watch task
@@ -57,4 +55,6 @@ gulp.task('watch', function(){
 
 gulp.task('default', ['scripts', 'html', 'browser-sync', 'watch']);
 // default task 
+
+
 
