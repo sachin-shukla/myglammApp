@@ -1,0 +1,55 @@
+ /*main sryle sheet goes here*/
+
+
+/*header Area CSSS*/
+/*.toolbarArea{
+  background: #795548;
+}*/
+.headerTitle{
+  color: #fff;
+}
+
+/*side nav area css*/
+md-sidenav  {
+  width: 200px;
+  padding:0px;
+  background-color: #fff;
+  max-width: 200px;
+  margin-top: 4.7%;
+}
+
+.sideNavSection md-content{
+  widht:250px;
+  padding: 0px;
+}
+
+.sideNavSection md-content{
+  padding: 0px;
+  background-color: #fff !important;
+}
+
+.menuList{
+  padding: 0px;
+  max-width: 200px;
+}
+.menu-name{
+    margin-left: 5% !important;
+}
+.is-active{
+  color: rgb(255,82,82);
+}
+
+ /*Content Area CSS Goes Here*/
+
+.content {
+  background-color : #fff;
+  height:100%;
+  margin-left: 15%;
+  width:100%;
+}
+
+ /*utils classes*/
+
+ .align-center{
+  text-align: center;;
+ }

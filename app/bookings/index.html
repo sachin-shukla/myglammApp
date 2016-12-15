@@ -1,33 +1,126 @@
 <!-- index.html page code starts here -->
-<!DOCTYPE Html>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>MyGlamm </title>
-	
+	<link rel="stylesheet" type="text/css" href="../bower_components/angular-material/angular-material.css">
+
+	<link rel="stylesheet" type="text/css" href="../bower_components/components-font-awesome/css/font-awesome.css">
+
+	<link rel="stylesheet" type="text/css" href="../js/ng-table/ng-table.min.css">
+
+	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
-<body ng-cloak layout= "column">
+<body ng-app="MyApp" layout="column" ng-controller="BookingsController as bkngCtrl">
 
-<!-- container  -->
-<md-toolbar layout="row" class="md-toolbar-tools">
-<h1>Welcome to Myglamm</h1>
-</md-toolbar>
+	<!-- <div flex layout="row"> -->
+		<md-toolbar layout="row" class="md-toolbar-tools md-whiteframe-3dp toolbarArea">
+		<h1 class="align-center headerTitle"><span ng-click="toggleLeft()"> <i class="fa fa-bars" aria-hidden="true"> </i> </span> <span style="padding-left: 5px;"> Welcome to Myglamm </span></h1>
+		</md-toolbar>
+	<!-- </div> -->
+	<div flex layout="row">
+
+		<md-sidenav flex  class="md-sidenav-left md-whiteframe-4dp sideNavSection" md-disable-backdrop md-component-id="left" md-is-open="true" >
+		 	<md-content>
+		 		<md-list  ng-cloak="" class="menuList" ng-cloak="">
+
+				  <md-list-item ng-repeat="menu in menuList"  ng-click="showMenuData(menu.name)">
+				    <i ng-class="menu.icon"> </i>
+				    <p class="menu-name" ng-class="{'is-active': menu.name == 'Bookings'}"> {{ menu.name }}</p>
+				  </md-list-item>
+
+				</md-list>
+
+		 	</md-content>
+
+		</md-sidenav>
 
 
-<div flex layout="row">
+	      <!-- Main Container Area #4 -->
+	      <md-content flex class="content" layout="column" ng-cloak  layout-padding>
 
-	<md-sidenav	md-is-locked-ope="true" class-"md-whiteframe-4dp">
-		Side nav
-	</md-sidenav>
+  			<h1>Showing the List of Bookings</h1>
 
-	<md-content flex id="content">
-	 Content
-	</md-content>
+  				<div layout="row">
+  					<h4>Filter Here :</h4>
+  					
+  					
+  					<md-input-container flex layout-margin>
+					  <label>Select City</label>
+					  <md-select ng-model="searchData.appointment.city.name" >
+					    <md-option ng-value="city" ng-repeat="city in cityArr track by $index">{{ city }}</md-option>
+					  </md-select>
+					</md-input-container>
 
-</div>
+					<md-input-container flex layout-margin >
+					  <label>Select Status</label>
+					  <md-select ng-model="searchData.appointment.status" >
+					    <md-option ng-value="status" ng-repeat="status in StatusArr track by $index">{{ status }}</md-option>
+					  </md-select>
+					</md-input-container>
+
+					<md-input-container flex=40 >
+					  <label>Search here</label>
+					  <input type="text" ng-model="searchData.$" >
+					</md-input-container>
+
+					<md-input-container flex>
+					<md-button   ng-click="clearAllSelecction()" class="md-raised md-primary" aria-label="Clgear All" > Clear All</md-button>
+					</md-input-container>
+  				</div>
+  				<md-divider >
+  				</md-divider>
+
+  				<div layout="column" flex>
+				    <table ng-table="tableParams" class="table table-bordered table-striped table-condensed">
+				      <tr ng-repeat="row in resultData | filter:searchData:strict  track by $index ">
+				        <td data-title="'Apnt Id'" >{{row.appointment.appointmentId}}</td>
+				        <td data-title="'Apnt Start Date'" >{{row.appointment.appointmentStartTS | date}}</td>
+				        <td data-title="'Apnt Start Time'">{{row.appointment.appointmentStartTS | date : "h:mm a"}}</td>
+				        <td data-title="'City'"  >{{row.appointment.city.name}}</td>
+
+				        <td data-title="'Apnt Status'"  >{{row.appointment.status}}</td>
+				        <td data-title="'Consumer Name'" >{{ row.consumer.firstName + " " + row.consumer.lastName }}</td>
+				        <td data-title="'Consumer No.'" >{{row.consumer.mobileNumber}}</td>
+				        <td data-title="'Franchise Name'" >{{row.franchise.franchiseName}}</td>
+				        <td data-title="'Artist Name'" >{{row.artist.firstName + " " + row.artist.lastName}}</td>
+
+				        <td data-title="'Services'" >{{row.subCategories[0].name}}</td>
+				        <td data-title="'Final Amount'" >{{row.payment.finalAmount}}</td>
+
+				      </tr>
+				    </table>
+			    </div>
+				  
+				
+	      </md-content>
+
+	</div>
+
+
+
+<!-- Library files loaded here -->
+<!-- angular js library  -->
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+
+<script type="text/javascript" src="../js/ng-table/ng-table.min.js"></script>
+
+<script type="text/javascript" src="../bower_components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="../bower_components/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="../bower_components/angular-aria/angular-aria.js"></script>
+<script type="text/javascript" src="../bower_components/angular-messages/angular-messages.js"></script>
+
+<!-- angular-material-libraray -->
+<script type="text/javascript" src="../bower_components/angular-material/angular-material.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+
+
 
 <!-- loading the script files required to run the application -->
-<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/core.min.js"></script>
 
+<!-- <script type="text/javascript" src="../js/data.js"></script> -->
 </body>
 </html>

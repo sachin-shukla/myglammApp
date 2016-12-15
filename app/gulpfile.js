@@ -19,6 +19,13 @@ gulp.task('scripts', function() {
 });
 
 
+// task for css files
+gulp.task('styles', function(){
+  return  gulp.src('./css/*.css')
+    .pipe(reload({stream:true}));
+});
+
+
 // task for html files
 gulp.task('html', function(){
   return  gulp.src('./bookings/*.html')
@@ -26,9 +33,12 @@ gulp.task('html', function(){
 });
 
 
+
+
 // task to run build server 
 gulp.task('browser-sync', function() {
     browserSync({
+    	port: 8089,
         server: {
             baseDir: "./"
         }
@@ -37,19 +47,10 @@ gulp.task('browser-sync', function() {
 
 
 
-// task to run build server for testing final app
-// gulp.task('build:serve', function() {
-//     browserSync({
-//         server: {
-//             baseDir: "./build/"
-//         }
-//     });
-// });
-
-
 // watch task
 gulp.task('watch', function(){
 	gulp.watch('./js/*.js', ['scripts']);
+	gulp.watch('./css/*.css', ['styles']);
   	gulp.watch('./bookings/*.html', ['html']);
 });
 
